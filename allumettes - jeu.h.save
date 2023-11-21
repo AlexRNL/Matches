@@ -1,9 +1,0 @@
-#ifndef DEF_JEUH
-#define DEF_JEUH
-
-//Prototypes des fonctions :
-int intelligence_artificielle (int allumettes, int difficulte) ;
-int ia_parfaite (int allumettes) ;
-int choix_joueur(int nb_All, int *cont)
-
-#endif
