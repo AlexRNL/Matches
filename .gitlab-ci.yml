@@ -4,7 +4,7 @@ image: gcc
 build:
   stage: build
   before_script:
-    - apt update && apt -y install make make cmake
+    - apt update && apt -y install make make cmake libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
   script:
     - mkdir ci-build
     - cd ci-build

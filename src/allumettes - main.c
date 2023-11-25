@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2008 Barféty Alex
+Copyright (C) 2008 Barfï¿½ty Alex
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "main.h"
 
-/*Jeu des alumettes : un nombre (aléatoire ou pas) d'alumettes est disponible, le joueur peut prendre
-entre 1 et 3 alumettes par tours. Celui qui prend la dernière perd !!*/
+/*Jeu des alumettes : un nombre (alï¿½atoire ou pas) d'alumettes est disponible, le joueur peut prendre
+entre 1 et 3 alumettes par tours. Celui qui prend la derniï¿½re perd !!*/
 
 /*A ajouter :
-    - améliorer le graphismes des allumettes.
+    - amï¿½liorer le graphismes des allumettes.
     - VERIFIER LES LIBERATIONS DE MEMOIRE !!
-    - un "génerique".
+    - un "gï¿½nerique".
     - une installation.
     - des sons ?
 */
@@ -41,25 +41,25 @@ int main(int argc, char *argv[])
 
     //      INITIALISATION
     srand(time(NULL)) ;
-    SDL_Init(SDL_INIT_VIDEO | SDL_DOUBLEBUF) ;
+    SDL_Init(SDL_INIT_VIDEO) ;
     SDL_WM_SetIcon(SDL_LoadBMP("images/icone.bmp"), NULL) ;
     SDL_WM_SetCaption("Allumettes", NULL) ;
     SDL_EnableKeyRepeat(30, 20) ;
     TTF_Init() ;
 
-    //Détermination du nombre d'allumettes
+    //Dï¿½termination du nombre d'allumettes
     if (NB_ALLUMETTES <= 0 || NB_ALLUMETTES > 32) {nb_Allumettes = rand()%(17) + 16 ;}
     else {nb_Allumettes = NB_ALLUMETTES ;}
 
     //Allocation dynamique du tableau d'allumettes
     posAllumette = malloc(nb_Allumettes * sizeof(SDL_Rect)) ;
 
-    //Initialisation de l'écran
-    ecran = SDL_SetVideoMode(800, 550, 32, SDL_HWSURFACE) ;
+    //Initialisation de l'ï¿½cran
+    ecran = SDL_SetVideoMode(800, 550, 32, SDL_SWSURFACE) ;
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0)) ;
 
     //Initialisation des allumettes
-    allumette = SDL_CreateRGBSurface(SDL_HWSURFACE, 5, 100, 32, 0, 0, 0, 0) ;
+    allumette = SDL_CreateRGBSurface(SDL_SWSURFACE, 5, 100, 32, 0, 0, 0, 0) ;
     SDL_FillRect(allumette, NULL, SDL_MapRGB(allumette->format, 175, 147, 7)) ;
     //allumette = IMG_Load("images\allumettes 1.jpg") ;
 
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
                                                         break ;
                                    case SDLK_j : nb_joueurs = 1 + nb_joueurs%2 ; //Changer le nombre de joueurs au clavier
                                                  break ;
-                                   case SDLK_d : difficulte = (1 + difficulte)%4 ; //Changer la difficulté au clavier
+                                   case SDLK_d : difficulte = (1 + difficulte)%4 ; //Changer la difficultï¿½ au clavier
                                                  break ;
                                    case SDLK_F1 : aide(ecran, &cont) ;
                                                   break ;
@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
         afficher_gagnant(nb_joueurs, nb_tours, ecran, cont) ;
     }
 
-    //Libérations...
+    //Libï¿½rations...
     free(posAllumette) ;
     SDL_FreeSurface(allumette) ;
     TTF_Quit() ;

@@ -16,3 +16,7 @@ cmake-build-*/
 
 # Idea configuration folder
 .idea/
+
+# Folder for CLion CMake build
+SDL2
+cmake

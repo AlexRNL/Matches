@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2008 Barféty Alex
+Copyright (C) 2008 Barfï¿½ty Alex
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,15 +18,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "main.h"
 
-/*Contient les fonctions qui gèrent l'affichage*/
+/*Contient les fonctions qui gï¿½rent l'affichage*/
 
-//Fonction qui crée des allumettes dans un tableau :
+//Fonction qui crï¿½e des allumettes dans un tableau :
 void creer_Allumettes (SDL_Surface *ecran, int n, SDL_Surface *allumette, SDL_Rect pos[])
 {
     int i, esp = 20 ;
     for (i=0 ; i<n ; i++)
     {
-        allumette = SDL_CreateRGBSurface(SDL_HWSURFACE, 5, 100, 32, 0, 0, 0, 0) ;
+        allumette = SDL_CreateRGBSurface(SDL_SWSURFACE, 5, 100, 32, 0, 0, 0, 0) ;
         SDL_FillRect(allumette, NULL, SDL_MapRGB(allumette->format, 175, 147, 7)) ;
     }
     pos[0].x = (ecran->w - n*allumette->w - (n-1)*esp)/2 ;
@@ -60,7 +60,7 @@ void afficher_menu (SDL_Surface *ecran, Bouton menu[], int nb_joueurs, int diffi
     //Chargement de l'image :
     fond = IMG_Load("images/feu.jpg") ;
 
-    //Création des polices
+    //Crï¿½ation des polices
     menu[0].police = TTF_OpenFont("polices/firestarter.ttf", 100) ;
     for (i=1 ; i<9 ; i++)
     {
@@ -69,7 +69,7 @@ void afficher_menu (SDL_Surface *ecran, Bouton menu[], int nb_joueurs, int diffi
     menu[9].police = TTF_OpenFont("polices/angelina.ttf", 60) ;
     menu[10].police = TTF_OpenFont("polices/arial.ttf", 14) ;
 
-    //Création des textes :
+    //Crï¿½ation des textes :
     menu[0].texte = TTF_RenderText_Blended(menu[0].police, "ALLUMETTES", noir) ;
     menu[1].texte = TTF_RenderText_Blended(menu[1].police, "Nombre de joueur(s) :", noir) ;
     menu[2].texte = TTF_RenderText_Blended(menu[2].police, "1", noir) ;
@@ -128,7 +128,7 @@ void afficher_menu (SDL_Surface *ecran, Bouton menu[], int nb_joueurs, int diffi
     }
     SDL_Flip(ecran) ;
 
-    //Libération :
+    //Libï¿½ration :
     for (i=0 ; i<11 ; i++)
     {
         TTF_CloseFont(menu[i].police) ;
@@ -161,9 +161,9 @@ void encadre (Bouton *bout, SDL_Surface *ecran)
     SDL_Surface *larg = NULL, *haut=NULL ;
     SDL_Rect larg1, larg2, haut1, haut2 ;
 
-    //Création d'une largeur et d'une hauteur :
-    larg = SDL_CreateRGBSurface(SDL_HWSURFACE, bout->texte->w + 12, 2, 32, 0, 0, 0, 0) ;
-    haut = SDL_CreateRGBSurface(SDL_HWSURFACE, 2, bout->texte->h + 6, 32, 0, 0, 0, 0) ;
+    //Crï¿½ation d'une largeur et d'une hauteur :
+    larg = SDL_CreateRGBSurface(SDL_SWSURFACE, bout->texte->w + 12, 2, 32, 0, 0, 0, 0) ;
+    haut = SDL_CreateRGBSurface(SDL_SWSURFACE, 2, bout->texte->h + 6, 32, 0, 0, 0, 0) ;
     SDL_FillRect(larg, NULL, SDL_MapRGB(larg->format, 255, 255, 255)) ;
     SDL_FillRect(haut, NULL, SDL_MapRGB(haut->format, 255, 255, 255)) ;
 
@@ -183,7 +183,7 @@ void encadre (Bouton *bout, SDL_Surface *ecran)
     SDL_BlitSurface(haut, NULL, ecran, &haut1) ;
     SDL_BlitSurface(haut, NULL, ecran, &haut2) ;
 
-    //Libérations :
+    //Libï¿½rations :
     SDL_FreeSurface(larg) ;
     SDL_FreeSurface(haut) ;
 }
@@ -211,7 +211,7 @@ void afficher_jeu (SDL_Surface *ecran, int nb_All, SDL_Surface *allumette, SDL_R
         jeu[i].police = TTF_OpenFont("polices/arial.ttf", 28) ;
     }
 
-    //Création des textes :
+    //Crï¿½ation des textes :
     sprintf(all_rest, "Il reste %d allumettes.", nb_All) ;
     jeu[0].texte = TTF_RenderText_Blended(jeu[0].police, "ALLUMETTES", CouleurTitre) ;
     jeu[1].texte = TTF_RenderText_Blended(jeu[1].police, all_rest, blanc) ;
@@ -237,15 +237,15 @@ void afficher_jeu (SDL_Surface *ecran, int nb_All, SDL_Surface *allumette, SDL_R
     jeu[3].position.x = jeu[2].position.x ;
     jeu[3].position.y = jeu[2].position.y + jeu[2].texte->h + esp ;
 
-    //On stocke les valeurs nécessaire pour afficher plus tard le chiffre de l'ia :
+    //On stocke les valeurs nï¿½cessaire pour afficher plus tard le chiffre de l'ia :
     info_ia[0] = jeu[3].position.y ;
     info_ia[1] = jeu[3].position.x ;
     info_ia[2] = jeu[3].texte->w ;
 
-    //Création du triangle :
+    //Crï¿½ation du triangle :
     for (i=0 ; i<20 ; i++)
     {
-        triangle[i] = SDL_CreateRGBSurface(SDL_HWSURFACE, 1, 40-2*i, 32, 0, 0, 0, 0) ;
+        triangle[i] = SDL_CreateRGBSurface(SDL_SWSURFACE, 1, 40-2*i, 32, 0, 0, 0, 0) ;
     }
     posTriangle[0].x = jeu[2].position.x - 50 ;
     switch (nb_tours%2)
@@ -262,7 +262,7 @@ void afficher_jeu (SDL_Surface *ecran, int nb_All, SDL_Surface *allumette, SDL_R
         posTriangle[i].y = posTriangle[0].y + i ;
     }
 
-    //On ré-efface l'écran :
+    //On rï¿½-efface l'ï¿½cran :
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255)) ;
 
     //Blittage :
@@ -278,7 +278,7 @@ void afficher_jeu (SDL_Surface *ecran, int nb_All, SDL_Surface *allumette, SDL_R
     }
     SDL_Flip(ecran) ;
 
-    //Libérations :
+    //Libï¿½rations :
     for (i=0 ; i<4 ; i++)
     {
         TTF_CloseFont(jeu[i].police) ;
@@ -311,7 +311,7 @@ void afficher_choix_ia (int n, SDL_Surface *ecran, int info_ia[3])
     SDL_FreeSurface(chiffre.texte) ;
 }
 
-//Afficher un écran de fin :
+//Afficher un ï¿½cran de fin :
 void afficher_gagnant(int nb_joueurs, int nb_tours, SDL_Surface *ecran, int cont)
 {
      int i, j = 1, k = 1, tempsActuel, tempsPrecedant = 0 ;
@@ -324,27 +324,27 @@ void afficher_gagnant(int nb_joueurs, int nb_tours, SDL_Surface *ecran, int cont
 
      if (cont)
      {
-         //Création du dégradé :
-         ligne = SDL_CreateRGBSurface(SDL_HWSURFACE, ecran->w, 1, 32, 0, 0, 0, 0) ;
-         degrade = SDL_CreateRGBSurface(SDL_HWSURFACE, ecran->w, ecran->h, 32, 0, 0, 0, 0) ;
+         //Crï¿½ation du dï¿½gradï¿½ :
+         ligne = SDL_CreateRGBSurface(SDL_SWSURFACE, ecran->w, 1, 32, 0, 0, 0, 0) ;
+         degrade = SDL_CreateRGBSurface(SDL_SWSURFACE, ecran->w, ecran->h, 32, 0, 0, 0, 0) ;
          for(i=0 ; i<550 ; i++)
          {
              SDL_FillRect(ligne, NULL, SDL_MapRGB(degrade->format, i*255/550, 0, 0)) ;
              position.x = 0 ;
              position.y = i ;
              SDL_BlitSurface(ligne, NULL, ecran, &position) ;
-             SDL_BlitSurface(ligne, NULL, degrade, &position) ; //On stocke le dégradé dans une surface pour ne pas la recharger à chaque fois...
+             SDL_BlitSurface(ligne, NULL, degrade, &position) ; //On stocke le dï¿½gradï¿½ dans une surface pour ne pas la recharger ï¿½ chaque fois...
              SDL_Flip(ecran) ;
          }
          SDL_FreeSurface(ligne) ;
 
-         //Affichage du résulat
+         //Affichage du rï¿½sulat
          switch (nb_tours%2)
          {
             case 0 : if (nb_joueurs == 1) {sprintf(gagnant, "Vous avez perdu !") ;}
                      else {sprintf(gagnant, "Le joueur 2 gagne !!") ;}
                      break ;
-            case 1 : if (nb_joueurs == 1) {sprintf(gagnant, "Vous avez gagné !!") ;}
+            case 1 : if (nb_joueurs == 1) {sprintf(gagnant, "Vous avez gagnï¿½ !!") ;}
                      else {sprintf(gagnant, "Le joueur 1 gagne !!") ;}
                      break ;
          }
@@ -353,7 +353,7 @@ void afficher_gagnant(int nb_joueurs, int nb_tours, SDL_Surface *ecran, int cont
          resultat.position.x = ecran->w/2 - resultat.texte->w/2 ;
          resultat.position.y = ecran->h/2 - resultat.texte->h/2 ;
 
-         ligne = SDL_CreateRGBSurface(SDL_HWSURFACE, 800, 1, 32, 0, 0, 0, 0) ;
+         ligne = SDL_CreateRGBSurface(SDL_SWSURFACE, 800, 1, 32, 0, 0, 0, 0) ;
          position.x = 0 ;
          position.y = 0 ;
          while (cont && event.type != SDL_KEYDOWN && event.type != SDL_QUIT)
@@ -386,7 +386,7 @@ void afficher_gagnant(int nb_joueurs, int nb_tours, SDL_Surface *ecran, int cont
      }
 }
 
-//Affiche une fenêtre qui demande si l'on veut vraiment quitter :
+//Affiche une fenï¿½tre qui demande si l'on veut vraiment quitter :
 void quitter (int *cont, SDL_Surface *ecran)
 {
     int cont1 = 1 ;
@@ -396,13 +396,13 @@ void quitter (int *cont, SDL_Surface *ecran)
     Bouton info, ok, annul ;
     SDL_Event event ;
 
-    //Création du cadre :
-    cadre = SDL_CreateRGBSurface(SDL_HWSURFACE, 380, 100, 32, 0, 0, 0, 0) ;
+    //Crï¿½ation du cadre :
+    cadre = SDL_CreateRGBSurface(SDL_SWSURFACE, 380, 100, 32, 0, 0, 0, 0) ;
     SDL_FillRect(cadre, NULL, SDL_MapRGB(cadre->format, 188, 188, 188)) ;
     position.x = ecran->w/2 - cadre->w/2 ;
     position.y = ecran->h/2 - cadre->h/2 ;
 
-    //Création du bouton ok et annuler :
+    //Crï¿½ation du bouton ok et annuler :
     info.police = TTF_OpenFont("polices/arial.ttf", 24) ;
     ok.police = TTF_OpenFont("polices/arial.ttf", 32) ;
     annul.police = TTF_OpenFont("polices/arial.ttf", 32)  ;
@@ -458,7 +458,7 @@ void quitter (int *cont, SDL_Surface *ecran)
         }
     }
 
-    //Libérations...
+    //Libï¿½rations...
     TTF_CloseFont(info.police) ;
     TTF_CloseFont(ok.police) ;
     TTF_CloseFont(annul.police) ;
@@ -468,16 +468,16 @@ void quitter (int *cont, SDL_Surface *ecran)
     SDL_FreeSurface(annul.texte) ;
 }
 
-//Fonction qui affiche un écran d'aide :
+//Fonction qui affiche un ï¿½cran d'aide :
 void aide (SDL_Surface *ecran, int *cont)
 {
     Bouton pt_int, titre, retour, paragraphe[3] ;
     SDL_Color blanc = {255, 255, 255}, bleu = {0, 0, 255}, noir = {0, 0, 0} ;
     SDL_Event event ;
     SDL_Rect pos ;
-    char regles[] = "Des allumettes sont posées devant vous. À chaque tour, vous devez en prendre 1, 2 ou 3." ;
-    char but[] = "Pour gagner, laissez la dernière à votre adversaire !" ;
-    char jouabilite[] = "Choisissez le nombre de joueur(s) et la difficulté avec la souris ou à l'aide des touches 'j' et 'd'. Pour enlever des allumettes appuyez sur les touches 1, 2 ou 3 du clavier." ;
+    char regles[] = "Des allumettes sont posï¿½es devant vous. ï¿½ chaque tour, vous devez en prendre 1, 2 ou 3." ;
+    char but[] = "Pour gagner, laissez la derniï¿½re ï¿½ votre adversaire !" ;
+    char jouabilite[] = "Choisissez le nombre de joueur(s) et la difficultï¿½ avec la souris ou ï¿½ l'aide des touches 'j' et 'd'. Pour enlever des allumettes appuyez sur les touches 1, 2 ou 3 du clavier." ;
     int i, cont1 = 1 ;
 
     //Le point d'interrogation (fond)
@@ -503,7 +503,7 @@ void aide (SDL_Surface *ecran, int *cont)
     {
         paragraphe[i].police = TTF_OpenFont("polices/arial.ttf", 35) ;
     }
-    paragraphe[0].texte = TTF_RenderText_Shaded(paragraphe[0].police, "Règles du jeu :", bleu, noir) ;
+    paragraphe[0].texte = TTF_RenderText_Shaded(paragraphe[0].police, "Rï¿½gles du jeu :", bleu, noir) ;
     paragraphe[1].texte = TTF_RenderText_Shaded(paragraphe[1].police, "But du jeu :", bleu, noir) ;
     paragraphe[2].texte = TTF_RenderText_Shaded(paragraphe[2].police, "Comment jouer ?", bleu, noir) ;
 
@@ -560,7 +560,7 @@ void aide (SDL_Surface *ecran, int *cont)
         }
     }
 
-    //Libérations
+    //Libï¿½rations
     TTF_CloseFont(pt_int.police) ;
     TTF_CloseFont(titre.police) ;
     TTF_CloseFont(retour.police) ;
@@ -598,7 +598,7 @@ void printTexte (SDL_Surface *ecran, char texte[], SDL_Rect *pos)
             i++ ;
             SDL_FreeSurface(lettre) ;
         } while (i+k<strlen(texte) && pos->x+lettre->w < ecran->w) ;
-        if (i+k<strlen(texte)-1) {while (texte[k+--i] != ' ') ;} //Si la phrase s'étale sur plusieurs lignes, on la coupe au dernier espace.
+        if (i+k<strlen(texte)-1) {while (texte[k+--i] != ' ') ;} //Si la phrase s'ï¿½tale sur plusieurs lignes, on la coupe au dernier espace.
         for (j=k ; j<k+i ; j++)
         {
             lett = texte[j] ;
@@ -615,7 +615,7 @@ void printTexte (SDL_Surface *ecran, char texte[], SDL_Rect *pos)
         SDL_FreeSurface(text) ;
     }
 
-    //Libérations :
+    //Libï¿½rations :
     free(chaine) ;
     TTF_CloseFont(police) ;
 }

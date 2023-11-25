@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2008 Barféty Alex
+Copyright (C) 2008 Barfï¿½ty Alex
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,13 +24,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_ttf.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 
 //       DEFINE
 
-#define NB_ALLUMETTES 0 //0 pour un nombre d'alumettes aléatoires.
+#define NB_ALLUMETTES 0 //0 pour un nombre d'alumettes alï¿½atoires.
 #define FPS 28
 
 //       STRUCTURES

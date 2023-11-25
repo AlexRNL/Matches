@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2008 Barféty Alex
+Copyright (C) 2008 Barfï¿½ty Alex
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "main.h"
 
-/*Fonctions qui gère les commandes du jeu*/
+/*Fonctions qui gï¿½re les commandes du jeu*/
 
-//Fonction qui gère l'intelligence artificielle du jeu :
+//Fonction qui gï¿½re l'intelligence artificielle du jeu :
 int intelligence_artificielle (int allumettes, int difficulte)
 {
     int res = 0 ;
@@ -76,13 +76,13 @@ int choix_joueur(int nb_All, int *cont, SDL_Surface *ecran, SDL_Surface *allumet
                                {
                                     case SDLK_ESCAPE : quitter(cont, ecran) ;
                                                        break ;
-                                    case SDLK_KP1 : nb_enl = 1 ;
+                                    case SDLK_KP_1 : nb_enl = 1 ;
                                                     cont2 = 0 ;
                                                     break ;
-                                    case SDLK_KP2 : nb_enl = 2 ;
+                                    case SDLK_KP_2 : nb_enl = 2 ;
                                                     cont2 = 0 ;
                                                     break ;
-                                    case SDLK_KP3 : nb_enl = 3 ;
+                                    case SDLK_KP_3 : nb_enl = 3 ;
                                                     cont2 = 0 ;
                                                     break ;
                                     case SDLK_1 : nb_enl = 1 ;
