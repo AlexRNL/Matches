@@ -18,6 +18,8 @@ find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${SDL2_TTF_LIBRARIES})
 
 install(FILES share/images/allumette.jpg	    DESTINATION ${CMAKE_INSTALL_DATADIR}/images/)
 install(FILES "share/images/allumette 1.jpg"	DESTINATION ${CMAKE_INSTALL_DATADIR}/images/)
