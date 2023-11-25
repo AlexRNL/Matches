@@ -126,7 +126,7 @@ void afficher_menu (SDL_Surface *ecran, Bouton menu[], int nb_joueurs, int diffi
     {
         encadre(&menu[5+difficulte], ecran) ;
     }
-    SDL_Flip(ecran) ;
+    SDL_RenderPresent(ecran) ;
 
     //Lib�ration :
     for (i=0 ; i<11 ; i++)
@@ -276,7 +276,7 @@ void afficher_jeu (SDL_Surface *ecran, int nb_All, SDL_Surface *allumette, SDL_R
     {
         SDL_BlitSurface(triangle[i], NULL, ecran, &posTriangle[i]) ;
     }
-    SDL_Flip(ecran) ;
+    SDL_RenderPresent(ecran) ;
 
     //Lib�rations :
     for (i=0 ; i<4 ; i++)
@@ -305,7 +305,7 @@ void afficher_choix_ia (int n, SDL_Surface *ecran, int info_ia[3])
     chiffre.position.y = info_ia[0] ;
 
     SDL_BlitSurface(chiffre.texte, NULL, ecran, &chiffre.position) ;
-    SDL_Flip(ecran) ;
+    SDL_RenderPresent(ecran) ;
 
     TTF_CloseFont(chiffre.police) ;
     SDL_FreeSurface(chiffre.texte) ;
@@ -334,7 +334,7 @@ void afficher_gagnant(int nb_joueurs, int nb_tours, SDL_Surface *ecran, int cont
              position.y = i ;
              SDL_BlitSurface(ligne, NULL, ecran, &position) ;
              SDL_BlitSurface(ligne, NULL, degrade, &position) ; //On stocke le d�grad� dans une surface pour ne pas la recharger � chaque fois...
-             SDL_Flip(ecran) ;
+             SDL_RenderPresent(ecran) ;
          }
          SDL_FreeSurface(ligne) ;
 
@@ -377,7 +377,7 @@ void afficher_gagnant(int nb_joueurs, int nb_tours, SDL_Surface *ecran, int cont
             {
                 tempsPrecedant = tempsActuel ;
             }
-            SDL_Flip(ecran) ;
+            SDL_RenderPresent(ecran) ;
         }
 
         TTF_CloseFont(resultat.police) ;
@@ -423,7 +423,7 @@ void quitter (int *cont, SDL_Surface *ecran)
     encadre(&ok, ecran) ;
     encadre(&annul, ecran) ;
 
-    SDL_Flip(ecran) ;
+    SDL_RenderPresent(ecran) ;
 
     while (cont1)
     {
@@ -534,7 +534,7 @@ void aide (SDL_Surface *ecran, int *cont)
         pos.x = paragraphe[0].position.x/2 ;
         printTexte(ecran, jouabilite, &pos) ;
         encadre(&retour, ecran) ;
-        SDL_Flip(ecran) ;
+        SDL_RenderPresent(ecran) ;
 
         SDL_WaitEvent(&event) ;
         switch (event.type)

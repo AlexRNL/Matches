@@ -33,7 +33,10 @@ int main(int argc, char *argv[])
 {
     //      DECLARATION DES VARIABLES
     int nb_joueurs = 1, info_ia[3], nb_Allumettes = 0, nb_All_enlever = 0, nb_tours = 0, difficulte = 1, cont = 1, cont1 = 1 ;
-    SDL_Surface *ecran = NULL, *allumette = NULL ;
+    SDL_Surface *allumette = NULL ;
+    SDL_Window *window = NULL ;
+    SDL_Renderer *renderer = NULL ;
+    SDL_Surface *ecran = NULL ;
     SDL_Rect *posAllumette = NULL ;
     SDL_Event event ;
     Bouton menu[11] ;
@@ -42,9 +45,7 @@ int main(int argc, char *argv[])
     //      INITIALISATION
     srand(time(NULL)) ;
     SDL_Init(SDL_INIT_VIDEO) ;
-    SDL_WM_SetIcon(SDL_LoadBMP("images/icone.bmp"), NULL) ;
-    SDL_WM_SetCaption("Allumettes", NULL) ;
-    SDL_EnableKeyRepeat(30, 20) ;
+    //SDL_EnableKeyRepeat(30, 20) ;
     TTF_Init() ;
 
     //D�termination du nombre d'allumettes
@@ -55,7 +56,10 @@ int main(int argc, char *argv[])
     posAllumette = malloc(nb_Allumettes * sizeof(SDL_Rect)) ;
 
     //Initialisation de l'�cran
-    ecran = SDL_SetVideoMode(800, 550, 32, SDL_SWSURFACE) ;
+    window = SDL_CreateWindow("Allumettes", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 550, 0) ;
+    SDL_SetWindowIcon(window, SDL_LoadBMP("images/icone.bmp")) ;
+    renderer = SDL_CreateRenderer(window, -1, 0) ;
+    ecran = SDL_GetWindowSurface(window) ;
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0)) ;
 
     //Initialisation des allumettes
@@ -78,12 +82,12 @@ int main(int argc, char *argv[])
                                                       break ;
                                    case SDLK_RETURN : cont1 = 0 ;
                                                       encadre(&menu[9], ecran) ;
-                                                      SDL_Flip(ecran) ;
+                                                      SDL_RenderPresent(renderer) ;
                                                       SDL_Delay(128) ;
                                                       break ;
                                    case SDLK_KP_ENTER : cont1 = 0 ;
                                                         encadre(&menu[9], ecran) ;
-                                                        SDL_Flip(ecran) ;
+                                                        SDL_RenderPresent(renderer) ;
                                                         SDL_Delay(128) ;
                                                         break ;
                                    case SDLK_j : nb_joueurs = 1 + nb_joueurs%2 ; //Changer le nombre de joueurs au clavier
@@ -100,7 +104,7 @@ int main(int argc, char *argv[])
                                          {
                                              cont1 = 0 ;
                                              encadre(&menu[9], ecran) ;
-                                             SDL_Flip(ecran) ;
+                                             SDL_RenderPresent(renderer) ;
                                              SDL_Delay(350) ;
                                          }
                                          if (souris_dans_surface(event, &menu[2]))
@@ -137,7 +141,7 @@ int main(int argc, char *argv[])
 
 
     //      JEU
-    SDL_EnableKeyRepeat(0,0) ;
+    //SDL_EnableKeyRepeat(0,0) ;
     while (cont && (nb_Allumettes != 1))
     {
           creer_Allumettes(ecran, nb_Allumettes, allumette, posAllumette) ;
